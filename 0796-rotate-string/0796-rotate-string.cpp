@@ -1,4 +1,4 @@
-//checking and rotating approach
+//2-Pointer Approach
 
 #include <string.h>  
 class Solution {
@@ -8,17 +8,41 @@ public:
         if(s==goal){
             return true;
         }
-        int size = s.length();
-        for(int i=0;i<size;i++){
-            s += s[0];
-            s.erase(s.begin());
+        
+        if(s.size() != goal.size()){
+            return false;
+        }
+        
+        int i =0;
+        int j =0;
+        int size= s.size();
+        string compare = goal+goal;
+        int dsize = compare.size();
+        
+            while(i<dsize){
             
-            if(s==goal){
+            if(compare[i] == s[j]){
+                j++;
+                i++;
+                if(j==size){
                 return true;
+                }
+            } else {
+                if(j!=0){
+                    i=i-j+1;
+                    j=0;
+                } else {
+                    i++;
+                }
             }
 
-        }
-
+            // i++;
+            std::cout<<j;
+ 
+            }
+            
+            
+        std::cout<<j;
         return false;
 
     }
