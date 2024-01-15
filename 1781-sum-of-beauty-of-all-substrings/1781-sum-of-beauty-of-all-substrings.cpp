@@ -17,6 +17,9 @@ public:
                 int most = INT_MIN;
                 int least = INT_MAX;
                     
+                if(freq.size() < 2){
+                    
+                } else{
                  for (auto it = freq.begin(); it != freq.end(); it++) {
                         least = min(least,it->second); // Update the minimum frequency
                         most = max(most,it->second); // Update the maximum frequency
@@ -25,7 +28,7 @@ public:
                 
                     
                     count += (most-least);
-                
+                }
                 
                 
             }
