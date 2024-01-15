@@ -6,7 +6,7 @@ public:
         return 0;
     }
         
-        long long count=0;
+        long count=0;
         
         for(int i=0; i<s.size(); i++){
             map<char,int> freq;
@@ -14,15 +14,13 @@ public:
             for(int j=i; j<s.size(); j++){
                 freq[s[j]]++;
                
-                int most = INT_MIN;
+                int most = 0;
                 int least = INT_MAX;
                     
-                if(freq.size() < 2){
-                    
-                } else{
+                if(freq.size() >= 2){
                  for (auto it = freq.begin(); it != freq.end(); it++) {
-                        least = min(least,it->second); // Update the minimum frequency
-                        most = max(most,it->second); // Update the maximum frequency
+                        least = min(least,it->second); 
+                        most = max(most,it->second); 
                     }
                 
                 
