@@ -12,14 +12,19 @@ class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
         
-        ListNode* prev = head;
+        ListNode* prev = nullptr;
         if(head == NULL){
             return head;
         }
-        ListNode* temp = head->next;
+         while(head!=nullptr && head->val==val){
+            head = head->next;
+        }
+        
+        ListNode* temp = head;
         
         
         while(temp != nullptr){
+            cout<<temp->val<<endl;
             if(temp->val == val){
                 prev->next = temp->next;
             } else {
@@ -31,9 +36,9 @@ public:
         }
         
         
-        if(head->val == val){
-           head = head->next;   
-        }
+        // if(head->val == val){
+        //    head = head->next;   
+        // }
         
         return head;
     }
