@@ -27,6 +27,6 @@ public:
             prev = temp;
         }
         
-        return temp;
+        return prev;
     }
 };
