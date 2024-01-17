@@ -12,29 +12,48 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         
-        ListNode* slow = head;
-        vector<int> str;
         
-        while(slow != nullptr){
-            str.push_back(slow->val);
+        
+        
+    ListNode *slow = head; 
+    ListNode *fast = head;
+    ListNode *temp;
+        
+        while (fast && fast->next){
             slow = slow->next;
+            fast = fast->next->next;
         }
         
-        int mid = (str.size()+1)/2;
-        int size = str.size();
-            for(int i=0;i<mid;i++){
-                
-                cout<<str[str.size()-i-1]<<endl;
-                if(str[i] != str[size-i-1]){
-                    return false;
-                }
-                
+        // if(fast->next == nullptr){
+        //     slow = slow->next;
+        // }
+        
+        ListNode* prev = slow;
+        slow = slow->next;
+        prev->next = nullptr;
+        
+        while(slow){
+            temp = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = temp;
+        }
+        
+        fast = head;
+        slow = prev;
+        
+        while(slow){
+            if(fast->val != slow->val){
+                return false;
             }
+            
+            
+            slow = slow->next;
+            fast = fast->next;
+        }
         
         return true;
-        }
-        
-        
-        
+         
     
+};
 };
