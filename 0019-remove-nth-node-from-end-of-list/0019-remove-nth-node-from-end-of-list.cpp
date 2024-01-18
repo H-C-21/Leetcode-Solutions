@@ -26,7 +26,8 @@ public:
         ListNode* curr = head;
         ListNode* actual = head;
         int count = 0;
-        while(curr != NULL){
+       
+        while(curr->next != NULL){
             curr = curr->next;
             count++;
             if(count>n){
@@ -35,13 +36,11 @@ public:
             }
         }
         
-        
-        if(n != 1){
-        actual->val = actual->next->val;
-        actual->next = actual->next->next;
-        } else {
-            prev->next = NULL;
+        if(count+1 == n){
+            return head->next;
         }
+        
+        actual->next = actual->next->next;
         
         
         return head;
