@@ -15,40 +15,35 @@ public:
         if(!list1){return list2;}
         if(!list2){return list1;}
         
-        ListNode* head = list1;
-        ListNode* head2 = list2;
-
-        ListNode* newList = list1;
+        ListNode* left = list1;
+        ListNode* right = list2;
         
-
-        if(head2->val < head->val){
-            newList = head2;
-            head2 = head2->next;
-        } else {
-            head = head->next;
-        }
-        ListNode* ans = newList;
-    
-        while(head !=NULL && head2 != NULL){
-            if(head->val < head2->val){
-                newList->next = head;
-                head = head->next;
-            } else {
-                newList->next = head2;
-                head2= head2->next;
-            }
-
-            newList = newList->next;
-        }
-
-    if(head){
-        newList->next = head;
-    }
-    if(head2){
-        newList->next = head2;
-    }
+        ListNode* merged = new ListNode(-1);
+        ListNode* ans = merged;
         
-    return ans;
+        while(left != NULL && right != NULL){
+                if(left->val>right->val){
+                    merged->next = right;
+                    
+                    right = right->next;        
+                } else {
+                    merged->next = left;
+                    left = left->next;
+                }
+            
+            merged = merged->next;
+            
+        }
+        
+        if(left){
+        merged->next = left;
+        }
+        if(right){
+            merged->next = right;
+        }
+        
+        
+        return ans->next;
 
             
         }
