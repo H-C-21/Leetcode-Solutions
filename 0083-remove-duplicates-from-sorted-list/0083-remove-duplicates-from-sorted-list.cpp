@@ -19,19 +19,17 @@ public:
             return head;
         }
         
-        ListNode* prev = head;
-        ListNode* curr = head->next;
-        int t = head->val;
+        ListNode* temp;
+        ListNode* curr = head;
         
-        while(curr){
-            if(t == curr->val){
-                prev->next = curr->next;
+        
+        while(curr && curr->next){
+            if(curr->val == curr->next->val){
+                curr->next = curr->next->next;
             } else {
-                t = curr->val;
-                prev = curr;
+                curr = curr->next;
             }
-            
-            curr = curr->next;
+
         }
         
         return head;
