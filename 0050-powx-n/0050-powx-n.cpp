@@ -12,9 +12,9 @@ public:
             // return myPow(x,n); 
         }
         
-        // if(n == 1){
-        //     return x;
-        // }
+        if(n == 1){
+            return x;
+        }
         
         if(n%2 == 0){
             return myPow(x*x,n/2);
