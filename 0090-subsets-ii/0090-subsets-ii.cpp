@@ -1,17 +1,22 @@
 class Solution {
 public:
     
-    void helper(set<vector<int>>& ans, vector<int>& nums, vector<int> curr, int index){
+    void helper(vector<vector<int>>& ans, vector<int>& nums, vector<int> curr, int index){
         
         if(index == nums.size()){
             // sort(curr.begin(),curr.end());
-            ans.insert(curr);
+            ans.push_back(curr);
             return ;
         }
         
-        helper(ans,nums,curr,index+1);
-        curr.push_back(nums[index]);
-        helper(ans,nums,curr,index+1);
+          if(curr.size() != 0 && curr[curr.size()-1] == nums[index]){
+            curr.push_back(nums[index]);
+            helper(ans,nums,curr,index+1);
+        } else {
+            helper(ans,nums,curr,index+1);
+            curr.push_back(nums[index]);
+            helper(ans,nums,curr,index+1);
+        }
     
         
     }
@@ -19,13 +24,12 @@ public:
     
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         
-        std::set<vector<int>> ans;
+       vector<vector<int>> ans;
         vector<int> start;
         sort(nums.begin(),nums.end());
         helper(ans,nums,start,0);
         
-        vector<vector<int>> myVector(ans.begin(), ans.end());
-        return myVector;
+        return ans;
         
     }
 };
