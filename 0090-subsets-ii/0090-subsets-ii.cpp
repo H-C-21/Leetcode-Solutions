@@ -4,7 +4,7 @@ public:
     void helper(set<vector<int>>& ans, vector<int>& nums, vector<int> curr, int index){
         
         if(index == nums.size()){
-            sort(curr.begin(),curr.end());
+            // sort(curr.begin(),curr.end());
             ans.insert(curr);
             return ;
         }
@@ -21,6 +21,7 @@ public:
         
         std::set<vector<int>> ans;
         vector<int> start;
+        sort(nums.begin(),nums.end());
         helper(ans,nums,start,0);
         
         vector<vector<int>> myVector(ans.begin(), ans.end());
