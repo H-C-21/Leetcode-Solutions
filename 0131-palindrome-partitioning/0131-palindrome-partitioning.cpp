@@ -1,38 +1,28 @@
 class Solution {
 public:
     
-    bool isPalindrome(string s){
-        
-        int n = s.size();
-        for(int i = 0; i<n/2;i++){
-            if(s[i] != s[n-i-1]){
+    bool isPalindrome(const string& s, int start, int end) {
+        while(start <= end) {
+            if(s[start++] != s[end--])
                 return false;
-            }
-        }        
+        }
         return true;
     }
     
-    void helper(vector<vector<string>>& ans, string s, string curr,vector<string> ind, int index){
+    void helper(vector<vector<string>>& ans, string& s ,vector<string>& ind, int index){
         if(index == s.size()){
-            if(curr != ""){
-            //    if(isPalindrome(curr)){  
-                    return ;
-                // }
-            }
             ans.push_back(ind);
             return ;
         }
-
-        curr += s[index];
-        helper(ans,s,curr,ind,index+1);
-
-        if(isPalindrome(curr)){
-            ind.push_back(curr);
-            curr = "";
-            helper(ans,s,curr,ind,index+1);
+        
+        for(int i = index; i<s.size(); i++){
+            if(isPalindrome(s,index,i)){
+                ind.push_back(s.substr(index,i-index+1));
+                helper(ans,s,ind,i+1);
+                ind.pop_back();
+                
+            }
         }
-
-
 
     }
 
@@ -45,7 +35,7 @@ public:
             return ans;
         }
         
-        helper(ans,s,curr,ind,0);
+        helper(ans,s,ind,0);
 
         return ans;
     }
