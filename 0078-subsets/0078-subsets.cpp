@@ -19,10 +19,23 @@ public:
     
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
-        vector<int> ex;
+
         
-        helper(nums,ans,ex,0);
+        int k = nums.size();
+        
+        int rang = pow(2,k);
+        
+        for(int i = 0; i<rang; i++){
+            int curr = i;
+            vector<int> ex;
+            for(int j = 0; j<k; j++){
+                if(1<<j & curr){
+                    ex.push_back(nums[j]);
+                }
+            }
+            ans.push_back(ex);
+            ex.clear();
+        }
         return ans;
-        
-    }
+    }   
 };
